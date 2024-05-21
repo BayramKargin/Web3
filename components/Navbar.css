@@ -1,0 +1,108 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #BDC3C7;
+    margin: 0px 30px;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  .headerItem button{
+    padding: 15px 40px;
+    font-size: 16px;
+    color: white;
+    background-color: #5865F2; /* Butonun arka plan rengi */
+    border: none;
+    border-radius: 40px; /* Köşeleri yuvarlatmak için */
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.25); /* Hafif bir gölge efekti */
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+  
+  /* Logo */
+  .navbar-logo img {
+    height: 40px;
+  }
+  
+  /* Links container */
+  .navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  /* Link styling */
+  .navbar-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    position: relative;
+  }
+  
+  .navbar-links a:hover {
+    color: #6c63ff;
+  }
+  
+  /* Dropdown container */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    border-radius: 5px;
+    padding: 10px 0;
+  }
+  
+  .dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* Right section */
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .navbar-icon {
+    height: 20px;
+  }
+  
+  .navbar-balance {
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .navbar-connect {
+    background-color: #6c63ff;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .navbar-connect:hover {
+    background-color: #5751d7;
+  }
+  

@@ -1,0 +1,32 @@
+.ticker-row {
+    display: flex;
+    justify-content: center;
+
+  }
+  
+  .ticker-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin-right: 10px
+  }
+  
+  .ticker-logo {
+    width: 25px;
+    height: 25px;
+    margin-right: 6px;
+  }
+  
+  .ticker-value {
+    font-size: 20px;
+    margin: 0;
+  }
+  
+  .text-green-500 {
+    color: green;
+  }
+  
+  .text-red-500 {
+    color: red;
+  }
+  
