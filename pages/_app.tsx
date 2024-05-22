@@ -1,4 +1,5 @@
 import type { AppProps } from "next/app";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { ThirdwebProvider } from "@thirdweb-dev/react";
 import { Sepolia } from "@thirdweb-dev/chains"; // Sepolia zincirini içe aktarın
 import "../styles/globals.css";

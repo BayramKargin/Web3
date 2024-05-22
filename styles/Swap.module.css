@@ -1,0 +1,60 @@
+.home {
+    height: 60vh;
+    display: flex;
+    align-items: center;
+}
+
+.swapContainer {
+    background-color: #BDC3C7;
+    color: #000000;
+    padding: 30px;
+    border-radius: 10px;
+    height: 100%;
+    max-width: 600px; /* Adjust as needed */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;
+}
+
+.swapBox {
+    display: flex;
+    flex-direction: column;
+}
+
+.swapHeader {
+    text-align: center;
+    margin-bottom: 2rem; /* Add space below the header */
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column; /* Use flex-direction: column to stack items vertically */
+    margin-bottom: 1.5rem;
+}
+
+.inputGroup select,
+.inputGroup input {
+    margin: 15px;
+    padding: 15px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    background-color: #a09b9b;
+    color: white;
+    font-size: 1rem;
+}
+
+.swapButton {
+    padding: 15px 30px;
+    font-size: 1rem;
+    background-color: #0062cc;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.estimatedGas {
+    font-size: 0.9rem; /* Adjust font size */
+    text-align: center; /* Center text */
+    margin-bottom: 2rem;
+}
