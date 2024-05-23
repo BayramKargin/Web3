@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ConnectWallet from './ConnectWallet/ConnectWallet';
+// import { ConnectWallet } from "@thirdweb-dev/react";
 import WSCoin from './WSCoin/WSCoin';
 import Link from 'next/link';
 import Image from 'next/image';

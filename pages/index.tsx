@@ -5,26 +5,18 @@ import { useEffect, useState } from "react";
 import SwapInput from "../components/SwapInput";
 
 const Home: NextPage = () => {
-  // Contracts for the DEX and the token
   const TOKEN_CONTRACT = "0xe90D8643c4D32F8F383757c79A26f9ac6507744E";
   const DEX_CONTRACT = "0x53CEC441893082c7e36fbCa91D55940048e5F446";
 
-  // SDK instance
   const sdk = useSDK();
-
-  // Get the address of the connected account
   const address = useAddress();
-  // Get contract instance for the token and the DEX
   const { contract: tokenContract } = useContract(TOKEN_CONTRACT);
   const { contract: dexContract } = useContract(DEX_CONTRACT);
-  // Get token symbol and balance
   const { data: symbol } = useContractRead(tokenContract, "symbol");
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);
-  // Get native balance and LP token balance
   const { data: nativeBalance } = useBalance();
   const { data: contractTokenBalance } = useTokenBalance(tokenContract, DEX_CONTRACT);
 
-  // State for the contract balance and the values to swap
   const [contractBalance, setContractBalance] = useState<String>("0");
   const [nativeValue, setNativeValue] = useState<String>("0");
   const [tokenValue, setTokenValue] = useState<String>("0");
@@ -44,7 +36,6 @@ const Home: NextPage = () => {
     "approve"
   );
 
-  // Get the amount of tokens to get based on the value to swap
   const { data: amountToGet } = useContractRead(
     dexContract,
     "getAmountOfTokens",
@@ -61,7 +52,6 @@ const Home: NextPage = () => {
       ]
   );
 
-  // Fetch the contract balance
   const fetchContractBalance = async () => {
     try {
       const balance = await sdk?.getBalance(DEX_CONTRACT);
@@ -71,8 +61,6 @@ const Home: NextPage = () => {
     }
   };
 
-  // Execute the swap
-  // This function will swap the token to native or the native to the token
   const executeSwap = async () => {
     setIsLoading(true);
     try {
@@ -105,13 +93,12 @@ const Home: NextPage = () => {
     }
   };
 
-  // Fetch the contract balance and update it every 10 seconds
   useEffect(() => {
     fetchContractBalance();
-    setInterval(fetchContractBalance, 10000);
+    const interval = setInterval(fetchContractBalance, 10000);
+    return () => clearInterval(interval);
   }, []);
 
-  // Update the amount to get based on the value
   useEffect(() => {
     if(!amountToGet) return;
     if(currentFrom === "native") {
@@ -130,8 +117,7 @@ const Home: NextPage = () => {
           borderRadius: "10px",
           minWidth: "500px",
         }}>
-          <div 
-            >
+          <div>
             <SwapInput
               current={currentFrom as string}
               type="native"
@@ -139,7 +125,7 @@ const Home: NextPage = () => {
               value={nativeValue as string}
               setValue={setNativeValue}
               tokenSymbol="ETH"
-              tokenBalance= {nativeBalance?.displayValue}
+              tokenBalance={nativeBalance?.displayValue}
             />
             <button
               onClick={() => 
