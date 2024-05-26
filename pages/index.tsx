@@ -111,13 +111,8 @@ const Home: NextPage = () => {
   return (
     <main className={styles.main}>
       <div className={styles.container}>
-        <div style={{
-          backgroundColor: "#111",
-          padding: "2rem",
-          borderRadius: "10px",
-          minWidth: "500px",
-        }}>
-          <div>
+        <div className={styles.swapBox}>
+          <div className={styles.swapSection}>
             <SwapInput
               current={currentFrom as string}
               type="native"
@@ -146,9 +141,7 @@ const Home: NextPage = () => {
             />
           </div>
           {address ? (
-            <div style={{
-              textAlign: "center",
-            }}>
+            <div className={styles.swapButtonContainer}>
               <button
                 onClick={executeSwap}
                 disabled={isLoading as boolean}
