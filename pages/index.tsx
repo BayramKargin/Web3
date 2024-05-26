@@ -3,6 +3,7 @@ import styles from "../styles/Home.module.css";
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
 import SwapInput from "../components/SwapInput";
+import SelectToken from "../components/SelectToken/SelectToken";
 
 const Home: NextPage = () => {
   const TOKEN_CONTRACT = "0xe90D8643c4D32F8F383757c79A26f9ac6507744E";
@@ -108,37 +109,103 @@ const Home: NextPage = () => {
     }
   }, [amountToGet]);
 
+  type Coin = {
+    id: string;
+    symbol: string;
+    name: string;
+    image: string;
+    current_price: number;
+  };
+
+
+  const [coins, setCoins] = useState<Coin[]>([]);
+  const [coins2, setCoins2] = useState<Coin[]>([]);
+  const [selectedCoin1, setSelectedCoin1] = useState<Coin | null>(null);
+  const [selectedCoin2, setSelectedCoin2] = useState<Coin | null>(null);
+
+
+  const coinList = [
+    { id: 'babu', symbol: 'babu', name: 'Babu', image: 'https://assets.coingecko.com/coins/images/279/small/ethereum.png', current_price: 3000 }
+  ];
+
+
+  const handleSelectChange1 = (coinId: string) => {
+    const coin = coins.find((c) => c.id === coinId) || null;
+    setSelectedCoin1(coin);
+  };
+
+  const handleSelectChange2 = (coinId: string) => {
+    const coin = coins2.find((c) => c.id === coinId) || null;
+    setSelectedCoin2(coin);
+  };
+
+  useEffect(() => {
+    const fetchCoinGecko = async () => {
+      const urlMarketCapitalTen =
+        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1";
+      const options = {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          "x-cg-demo-api-key": "CG-EuXL6u3vtLzpKN7yEVzv6cb2",
+        },
+      };
+
+      try {
+        const res = await fetch(urlMarketCapitalTen, options);
+        const data = await res.json();
+        setCoins(data);
+      } catch (err) {
+        console.error("error:", err);
+      }
+    };
+    setCoins2(coinList);
+    fetchCoinGecko();
+  }, []);
+
   return (
     <main className={styles.main}>
       <div className={styles.container}>
         <div className={styles.swapBox}>
           <div className={styles.swapSection}>
-            <SwapInput
-              current={currentFrom as string}
-              type="native"
-              max={nativeBalance?.displayValue}
-              value={nativeValue as string}
-              setValue={setNativeValue}
-              tokenSymbol="ETH"
-              tokenBalance={nativeBalance?.displayValue}
-            />
-            <button
-              onClick={() => 
-                currentFrom === "native"
-                  ? setCurrentFrom("token")
-                  : setCurrentFrom("native")
-              }
-              className={styles.toggleButton}
-            >↓</button>
-            <SwapInput
-              current={currentFrom as string}
-              type="token"
-              max={tokenBalance?.displayValue}
-              value={tokenValue as string}
-              setValue={setTokenValue}
-              tokenSymbol={symbol as string}
-              tokenBalance={tokenBalance?.displayValue}
-            />
+            {nativeBalance && tokenBalance ? (
+              <>
+                <SwapInput
+                  current={selectedCoin1?.symbol || ''}
+                  type="native"
+                  max={nativeBalance.displayValue || '0'}
+                  value={nativeValue as string}
+                  setValue={setNativeValue}
+                  tokenSymbol={selectedCoin1?.symbol || 'Select a token'}
+                  tokenBalance={nativeBalance.displayValue}
+                  coins={coins}
+                  handleSelectChange={handleSelectChange1}
+                  selectedCoin={selectedCoin1}
+                />
+                <button
+                  onClick={() => 
+                    currentFrom === "native"
+                      ? setCurrentFrom("token")
+                      : setCurrentFrom("native")
+                  }
+                  className={styles.toggleButton}
+                >↓</button>
+                <SwapInput
+                  current={selectedCoin2?.symbol || ''}
+                  type="token"
+                  max={tokenBalance.displayValue || '0'}
+                  value={tokenValue as string}
+                  setValue={setTokenValue}
+                  tokenSymbol={selectedCoin2?.symbol || 'Select a token'}
+                  tokenBalance={tokenBalance.displayValue}
+                  coins={coins2}
+                  handleSelectChange={handleSelectChange2}
+                  selectedCoin={selectedCoin2}
+                />
+              </>
+            ) : (
+              <p>Loading balance...</p>
+            )}
           </div>
           {address ? (
             <div className={styles.swapButtonContainer}>
