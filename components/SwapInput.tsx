@@ -11,7 +11,7 @@ type Coin = {
 };
 
 type Props = {
-  type: 'native' | 'token';
+  type: "native" | "token";
   tokenSymbol?: string;
   tokenBalance?: string;
   current: string;

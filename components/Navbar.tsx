@@ -10,8 +10,8 @@ const Navbar: React.FC = () => {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <Image src="/images/logoblue.png" width={35} height={35} alt="Logo" />
-        <div className="navbar-links"> <Link href="/">BABU</Link></div>
+      <Link href="/"><Image src="/images/babulogo.png" width={35} height={35} alt="Logo" /></Link>
+        <div className="navbar-links"> <Link href="/"></Link></div>
       </div>
       <div className="navbar-links">
         <Link href="/chat">Chat</Link>

@@ -125,7 +125,7 @@ const Home: NextPage = () => {
 
 
   const coinList = [
-    { id: 'babu', symbol: 'babu', name: 'Babu', image: 'https://assets.coingecko.com/coins/images/279/small/ethereum.png', current_price: 3000 }
+    { id: 'babu', symbol: 'babu', name: 'Babu', image: '/images/babulogo.png', current_price: 3000 }
   ];
 
 
@@ -171,7 +171,7 @@ const Home: NextPage = () => {
             {nativeBalance && tokenBalance ? (
               <>
                 <SwapInput
-                  current={selectedCoin1?.symbol || ''}
+                  current={currentFrom as string}
                   type="native"
                   max={nativeBalance.displayValue || '0'}
                   value={nativeValue as string}
@@ -191,7 +191,7 @@ const Home: NextPage = () => {
                   className={styles.toggleButton}
                 >↓</button>
                 <SwapInput
-                  current={selectedCoin2?.symbol || ''}
+                  current={currentFrom as string}
                   type="token"
                   max={tokenBalance.displayValue || '0'}
                   value={tokenValue as string}
