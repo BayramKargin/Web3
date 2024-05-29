@@ -171,7 +171,7 @@
   border-radius: 8px;
   border: 1px solid #d1d5db;
   font-size: 1rem;
-  color: #fff;
+  color: #9ca3af;
   background-color: #f0f4f8;
   text-align: right;
   transition: border-color 0.3s;
@@ -274,7 +274,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
   background-color: #f0f4f8;
 }
 

@@ -1,6 +1,7 @@
+"use client";
+
 import React, { useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
-
 
 type Coin = {
   id: string;
@@ -17,7 +18,7 @@ type SelectTokenProps = {
 };
 
 const SelectToken: React.FC<SelectTokenProps> = ({
-  coins,
+  coins = [], // Default value to prevent undefined error
   handleSelectChange,
   selectedCoin,
 }) => {
