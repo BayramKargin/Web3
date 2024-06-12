@@ -177,7 +177,7 @@ const Home: NextPage = () => {
                   value={nativeValue as string}
                   setValue={setNativeValue}
                   tokenSymbol={selectedCoin1?.symbol || 'Select a token'}
-                  tokenBalance={nativeBalance.displayValue}
+                  tokenBalance={ selectedCoin1?.symbol === 'eth' ? nativeBalance.displayValue: "0"}
                   coins={coins}
                   handleSelectChange={handleSelectChange1}
                   selectedCoin={selectedCoin1}
@@ -197,7 +197,7 @@ const Home: NextPage = () => {
                   value={tokenValue as string}
                   setValue={setTokenValue}
                   tokenSymbol={selectedCoin2?.symbol || 'Select a token'}
-                  tokenBalance={tokenBalance.displayValue}
+                  tokenBalance={selectedCoin2?.symbol == "babu" ? tokenBalance.displayValue : "0"}
                   coins={coins2}
                   handleSelectChange={handleSelectChange2}
                   selectedCoin={selectedCoin2}
